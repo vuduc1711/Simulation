@@ -4,14 +4,14 @@ import pandas as pd
 from bs4 import BeautifulSoup as bs
 
 
-class stock_CP68():
+class stock_cp68:
     def __init__(self, stock_id, save_path):
         self.stock_id = stock_id
         self.save_path = save_path
+        self.stock_data = pd.DataFrame()
 
     def crawl_stock(self):
         page = 1
-        self.stock_data = pd.DataFrame()
         while True:  # Create a loop to take data
             # Link
             requests.packages.urllib3.disable_warnings()
@@ -33,11 +33,10 @@ class stock_CP68():
                 data_frame = [data_list[i:i + 13] for i in range(0, len(data_list), 13)]
 
                 # Remove header
-                header = data_frame.pop(0)
+                data_frame.pop(0)
 
                 # Join data
-                df = pd.DataFrame(data_frame)
-                self.stock_data = self.stock_data.append(data_frame)
+                self.stock_data.append(data_frame)
 
                 # Next page
                 page += 1
@@ -54,7 +53,9 @@ class stock_CP68():
         self.stock_data.to_csv(f'{self.save_path}{self.stock_id}.csv', index=False)
         print(f'Done! Total page is:{page - 1}')
 
+
 # -----Test-----
-# save_path = 'test_data/'
-# FPT = stock_CP68('FPT',save_path)
-# FPT.crawl_stock()
+if __name__ == '__main__':
+    # path = 'test_data/'
+    # FPT = stock_cp68('FPT', path)
+    # FPT.crawl_stock()
