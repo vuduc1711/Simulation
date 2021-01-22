@@ -54,7 +54,7 @@ class stock_CP68():
         self.stock_data.to_csv(f'{self.save_path}{self.stock_id}.csv', index=False)
         print(f'Done! Total page is:{page - 1}')
 
-#-----Test-----
+# -----Test-----
 # save_path = 'test_data/'
 # FPT = stock_CP68('FPT',save_path)
 # FPT.crawl_stock()
