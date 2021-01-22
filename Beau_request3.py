@@ -21,7 +21,7 @@ def appending(objects):
 
 def To_excels(objects,stocks):
 	df=pd.DataFrame(objects) 
-	df.to_excel('./%s.xlsx'%(stocks),  engine='xlsxwriter' )
+	df.to_excel('./All_prices/%s.xlsx'%(stocks),  engine='xlsxwriter' )
 	return None
 
 def write_txt(stocks):
@@ -89,35 +89,42 @@ def input_data():
 
 # Ngành= input("Nhập tên ngành:")
 # print("Thu thập dữ liệu ngành %s"%Ngành)
-# f= open("./All_prices/sorted_all_prices.txt","r")
-# String_tên_mã= f.read()
-# A= String_tên_mã.split(",")
-# f.close()
+f= open("./All_prices/sorted_all_prices.txt","r")
+String_tên_mã= f.read()
+A= String_tên_mã.split(",")
+f.close()
 # print(A)
 
-#Check for available:
-# try:
-# 	g= open("./All_prices/Done.txt","r")
-# 	String_tên_mã= g.read()
-# 	B= String_tên_mã.split(",")
-# 	lst=B[len(B)-2]
-# 	i=A.index(lst)+1
-# 	g.close()
-# except:
-# 	i=0
-# print(i)
+# Check for available:
+# h= open("./Available_stock/All industry.txt","r")
+# ind= g.read()
+# B1= String_tên_mã.split(",")
+try:
+	g= open("./All_prices/Done.txt","r")
+	String_tên_mã= g.read()
+	B= String_tên_mã.split(",")
+	lst=B[len(B)-2]
+	i=A.index(lst)+1
+	g.close()
+except:
+	i=0
+print(i)
 
+cont = A.index('SGC')
+print(A[cont])
+
+A = A[cont+1:]
 
 # A = ["%5Evnindex"]
 
 # A = ["GVR"]
 
 print("{:*^100}".format("Chương trình thu thập giá cổ phiếu"),"\n")
-print("{:*^100}".format(" Hi chị Nguyệt ^^ "),"\n")
+# print("{:*^100}".format(" Hi chị Nguyệt ^^ "),"\n")
 print("{:*^100}".format("Start"),"\n")
 print("{:*^100}".format(""))
 
-A = input_data()
+# A = input_data()
 
 i=0
 
